@@ -1,0 +1,13 @@
+version: '3'
+services:
+  vue-app:
+    build: .
+    ports:
+      - "8080:8080"  # Expose port 8080 to the host
+    volumes:
+      - .:/app  # Sync the project folder with the container
+      - /app/node_modules  # Keep node_modules inside the container to avoid conflicts
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # Enable file watching for development in some environments (e.g., Docker)
+    stdin_open: true
+    tty: true
